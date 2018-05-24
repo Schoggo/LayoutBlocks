@@ -1,0 +1,5 @@
+#Items
+item.item_placer.name=LayoutBlock Tool
+
+#Blocks
+tile.solid_layout_block.name=LayoutBlock (solid)
