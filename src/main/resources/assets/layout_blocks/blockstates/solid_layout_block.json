@@ -1,0 +1,98 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "all": "layout_blocks:blocks/layout_block"
+    },
+    "model": "cube_all"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+
+
+    "color":{
+      "white":{
+        "textures": {
+          "all": "layout_blocks:blocks/white_layout_block"
+        }
+      },
+      "orange":{
+        "textures": {
+          "all": "layout_blocks:blocks/orange_layout_block"
+        }
+      },
+      "magenta":{
+        "textures": {
+          "all": "layout_blocks:blocks/magenta_layout_block"
+        }
+      },
+      "light_blue":{
+        "textures": {
+          "all": "layout_blocks:blocks/light_blue_layout_block"
+        }
+      },
+      "yellow":{
+        "textures": {
+          "all": "layout_blocks:blocks/yellow_layout_block"
+        }
+      },
+      "lime":{
+        "textures": {
+          "all": "layout_blocks:blocks/lime_layout_block"
+        }
+      },
+      "pink":{
+        "textures": {
+          "all": "layout_blocks:blocks/pink_layout_block"
+        }
+      },
+      "gray":{
+        "textures": {
+          "all": "layout_blocks:blocks/gray_layout_block"
+        }
+      },
+      "silver":{
+        "textures": {
+          "all": "layout_blocks:blocks/silver_layout_block"
+        }
+      },
+      "cyan":{
+        "textures": {
+          "all": "layout_blocks:blocks/cyan_layout_block"
+        }
+      },
+      "purple":{
+        "textures": {
+          "all": "layout_blocks:blocks/purple_layout_block"
+        }
+      },
+      "blue":{
+        "textures": {
+          "all": "layout_blocks:blocks/blue_layout_block"
+        }
+      },
+      "brown":{
+        "textures": {
+          "all": "layout_blocks:blocks/brown_layout_block"
+        }
+      },
+      "green":{
+        "textures": {
+          "all": "layout_blocks:blocks/green_layout_block"
+        }
+      },
+      "red":{
+        "textures": {
+          "all": "layout_blocks:blocks/red_layout_block"
+        }
+      },
+      "black":{
+        "textures": {
+          "all": "layout_blocks:blocks/black_layout_block"
+        }
+      }
+    }
+  }
+}
+

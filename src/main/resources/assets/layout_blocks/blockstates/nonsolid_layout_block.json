@@ -1,0 +1,13 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "all": "layout_blocks:blocks/nonsolid_layout_block"
+    },
+    "model": "layout_blocks:nonsolid_layout_block"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}]
+  }
+}

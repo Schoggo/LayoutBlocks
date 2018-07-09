@@ -1,0 +1,5 @@
+{
+  "conditions": {
+    "config_setting": "com.schoggomilch.testmod.config.ConditionFac"
+  }
+}

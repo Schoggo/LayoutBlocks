@@ -1,0 +1,6 @@
+{
+  "parent": "block/cross",
+  "textures": {
+    "cross": "layout_blocks:blocks/nonsolid_layout_block"
+  }
+}

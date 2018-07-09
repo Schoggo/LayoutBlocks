@@ -1,0 +1,12 @@
+﻿
+tile.layout_blocks.nonsolid_layout_block.name=LayoutBlock (non-solid)
+tile.layout_blocks.solid_layout_block.name=LayoutBlock (solid)
+
+
+item.layout_blocks.item_placer.name=Placer wand
+
+gui.solid=Solid
+gui.nonsolid=Non-Solid
+gui.break_one=Break one block
+gui.break_all=Break connected
+
