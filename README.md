@@ -20,4 +20,6 @@ Please only download from [CurseForge](https://minecraft.curseforge.com/projects
 Feel free to include the mod in your modpacks. You don't need to message me about that *(you can however if you want to let me know anything)*.
 
 
+## Other Notes
+
 *Also, this is my first mod, so expect bugs and bad coding ;D*
