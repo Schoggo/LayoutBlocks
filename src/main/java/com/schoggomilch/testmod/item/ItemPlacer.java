@@ -65,19 +65,8 @@ public class ItemPlacer extends Item {
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
-        NBTTagCompound nbt;
-        if (stack.hasTagCompound()){
-            nbt = stack.getTagCompound();
-            if (nbt.hasKey("places")){
-                tooltip.add("Places: " + nbt.getByte("places"));
-            }
-            else {
-                tooltip.add("does have nbt but not places");
-            }
-        }
-        else {
-            tooltip.add("doesnt have nbt");
-        }
+        tooltip.add("Sets and removes blocks - for free! How cool is that?!");
+        tooltip.add("Not so cool? Hm, ok.");
     }
 
     public void registerItemModel(){
