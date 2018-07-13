@@ -1,5 +1,5 @@
 {
   "conditions": {
-    "config_setting": "com.schoggomilch.testmod.config.ConditionFac"
+    "config_setting": "com.schoggomilch.layout_blocks.config.ConditionFac"
   }
 }
