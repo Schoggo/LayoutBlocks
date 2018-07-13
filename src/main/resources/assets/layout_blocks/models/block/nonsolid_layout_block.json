@@ -1,5 +1,5 @@
 {
-  "parent": "block/cross",
+  "parent": "cube/all",
   "textures": {
     "cross": "layout_blocks:blocks/nonsolid_layout_block"
   }

@@ -1,10 +1,7 @@
 package com.schoggomilch.testmod.init;
 
-import com.schoggomilch.testmod.block.BlockSolidLayoutBlock;
-import com.schoggomilch.testmod.item.ItemPlacer;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -21,7 +18,6 @@ public class RegistrationHandler {
                 ModItems.blockNonsolidLayoutBlock,
                 ModItems.itemPlacer
         );
-        System.out.println("----------------------------------CommonProxy.registerItems done-----------------------------------");
     }
 
     @SubscribeEvent
@@ -29,7 +25,6 @@ public class RegistrationHandler {
         ModItems.itemPlacer.registerItemModel();
         ModBlocks.blockSolidLayoutBlock.registerItemModel();
         ModBlocks.blockNonsolidLayoutBlock.registerItemModel();
-        System.out.println("-------------------------------itemPlacer.regModel called---------------------------");
     }
 
 

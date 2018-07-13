@@ -31,7 +31,6 @@ public class CommonProxy {
 
 
     public void registerItemRenderer(Item i, int meta, String id){
-        System.out.println("----------------------------------CommonProxy.regItemRenderer done-----------------------------------");
     }
 
 

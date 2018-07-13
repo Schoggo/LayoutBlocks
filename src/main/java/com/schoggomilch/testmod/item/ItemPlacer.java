@@ -9,6 +9,7 @@ import com.schoggomilch.testmod.config.Config;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,6 +17,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -28,12 +30,12 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.schoggomilch.testmod.block.BlockSolidLayoutBlock.COLOR;
 import static net.minecraft.item.ItemBlock.setTileEntityNBT;
 
 @Mod.EventBusSubscriber
 public class ItemPlacer extends Item {
 
-    List<String> tooltipList = new ArrayList<>();
     BlockSolidLayoutBlock SolidLayoutBlock = ModBlocks.blockSolidLayoutBlock;
 
 
@@ -49,49 +51,6 @@ public class ItemPlacer extends Item {
 
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
-        System.out.println("onBlockDestroyed called-------------");
-        if(state.getBlock() == ModBlocks.blockNonsolidLayoutBlock || state.getBlock() == ModBlocks.blockSolidLayoutBlock){
-            NBTTagCompound nbt;
-            if (stack.hasTagCompound()){
-                nbt = stack.getTagCompound();
-                if (nbt.hasKey("breaks")){
-                    byte breaks = nbt.getByte("breaks");
-
-                    switch (breaks){
-                        case 0: //normal
-                            break;
-
-                        case 1: //break all connected layoutblocks
-                            new Thread(new BlockBreakerThread(worldIn, entityLiving, pos, stack)).start();
-                            System.out.println("---------------------thread started");
-                            break;
-                    }
-                }
-                else {
-                    nbt.setByte("breaks", (byte) 0);
-                    stack.setTagCompound(nbt);
-                    return false;
-                }
-            }
-            else {
-                nbt = new NBTTagCompound();
-                nbt.setByte("places", (byte) 1);
-                nbt.setByte("breaks", (byte) 0);
-                stack.setTagCompound(nbt);
-                return false;
-            }
-        }
-        return false;
-    }
-
-
-
-
-
-
-
-    @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         if(Config.rClickOpensGui) {
             if (worldIn.isRemote) {
@@ -102,13 +61,6 @@ public class ItemPlacer extends Item {
         return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
     }
 
-
-        //debugging
-    //@Override
-    //public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack){
-    //    System.out.println("com.schoggomilch.testmod.config: " + Config.maxBlocksBroken);
-    //    return false;
-    //}
 
 
     @Override
@@ -128,15 +80,51 @@ public class ItemPlacer extends Item {
         }
     }
 
- //   @Override
- //   public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
- //       if(!stack.hasTagCompound()){
- //           NBTTagCompound nbt = new NBTTagCompound();
- //           nbt.setByte("places", (byte) 1);
- //           stack.setTagCompound(nbt);
- //       }
- //   }
+    public void registerItemModel(){
+        LayoutBlocks.proxy.registerItemRenderer(ModItems.itemPlacer, 0, "item_placer");
+    }
 
+
+    //<editor-fold desc="Alternative breaking mode">
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
+        if(state.getBlock() == ModBlocks.blockNonsolidLayoutBlock || state.getBlock() == ModBlocks.blockSolidLayoutBlock){
+            NBTTagCompound nbt;
+            if (stack.hasTagCompound()){
+                nbt = stack.getTagCompound();
+                if (nbt.hasKey("breaks")){
+                    byte breaks = nbt.getByte("breaks");
+
+                    switch (breaks){
+                        case 0: //normal
+                            break;
+
+                        case 1: //break all connected layoutblocks
+                            if (Config.enableAltBreakMode)
+                                new Thread(new BlockBreakerThread(worldIn, entityLiving, pos, stack)).start();
+                            break;
+                    }
+                }
+                else {
+                    nbt.setByte("breaks", (byte) 0);
+                    stack.setTagCompound(nbt);
+                    return false;
+                }
+            }
+            else {
+                nbt = new NBTTagCompound();
+                nbt.setByte("places", (byte) 1);
+                nbt.setByte("breaks", (byte) 0);
+                stack.setTagCompound(nbt);
+                return false;
+            }
+        }
+        return false;
+    }
+    //</editor-fold>
+
+
+    //<editor-fold desc="Placing blocks">
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
         IBlockState iblockstate = worldIn.getBlockState(pos);
@@ -165,7 +153,8 @@ public class ItemPlacer extends Item {
                     iblockstate1 = ModBlocks.blockNonsolidLayoutBlock.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, 0, player, hand);
                 }
                 else {
-                    iblockstate1 = ModBlocks.blockSolidLayoutBlock.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, 0, player, hand);
+                    iblockstate1 = ModBlocks.blockSolidLayoutBlock.getStateForPlacement(worldIn,
+                            pos, facing, hitX, hitY, hitZ, 0, player, hand).withProperty(COLOR, EnumDyeColor.GRAY );
                 }
             }
             else {
@@ -178,7 +167,8 @@ public class ItemPlacer extends Item {
             {
                 iblockstate1 = worldIn.getBlockState(pos);
                 SoundType soundtype = iblockstate1.getBlock().getSoundType(iblockstate1, worldIn, pos, player);
-                worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F,
+                        soundtype.getPitch() * 0.8F);
             }
 
             return EnumActionResult.SUCCESS;
@@ -215,15 +205,6 @@ public class ItemPlacer extends Item {
 
         return true;
     }
-
-
-
-
-
-    public void registerItemModel(){
-        LayoutBlocks.proxy.registerItemRenderer(ModItems.itemPlacer, 0, "item_placer");
-    }
-
-
+    //</editor-fold>
 
 }

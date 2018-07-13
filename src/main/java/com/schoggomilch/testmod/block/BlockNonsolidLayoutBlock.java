@@ -72,29 +72,25 @@ public class BlockNonsolidLayoutBlock extends Block {
     }
 
     @Nullable
+    @SuppressWarnings("deprecation")
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
     {
         return NULL_AABB;
     }
 
+    @SuppressWarnings("deprecation")
     public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
 
-
+    @SuppressWarnings("deprecation")
     public boolean isFullCube(IBlockState state)
     {
         return false;
     }
 
-
-
-
-
-
-
-    @Override
+    @SuppressWarnings("deprecation")
     public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
         return true;
     }

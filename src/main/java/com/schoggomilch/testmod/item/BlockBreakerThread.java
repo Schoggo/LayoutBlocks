@@ -1,5 +1,6 @@
 package com.schoggomilch.testmod.item;
 
+import com.schoggomilch.testmod.LayoutBlocks;
 import com.schoggomilch.testmod.config.Config;
 import com.schoggomilch.testmod.init.ModBlocks;
 import net.minecraft.entity.EntityLivingBase;
@@ -26,8 +27,7 @@ public class BlockBreakerThread implements Runnable {
             this.entity = (EntityPlayer) entity;
         }
         else{
-            //TODO make an exception for this instead of sout
-            System.out.println("not a player");
+            LayoutBlocks.logger.error("Placer wand's alternative breaking mode used by something else than player.");
         }
         this.stack = stack;
 
@@ -36,13 +36,11 @@ public class BlockBreakerThread implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("-----------------from thread: run()");
         if(entity != null)
         breakBlocks(pos);
     }
 
 
-    //TODO find out why it works this way
     private void breakBlocks(BlockPos pos1) {
         if (breakCount < breakLimit || breakLimit == 0) {
             if (entity.canPlayerEdit(pos1, EnumFacing.UP, ItemStack.EMPTY) &&
