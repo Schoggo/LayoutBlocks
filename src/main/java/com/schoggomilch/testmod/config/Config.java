@@ -22,12 +22,16 @@ public class Config {
     public static boolean usesCraftingRecipe = true;
 
     @net.minecraftforge.common.config.Config.Comment({"How many blocks the placer's alternative breaking mode can break at once.",
-                                                        "Set to 0 to disable limit, set to a negative value to disable alternative breaking mode."})
+                                                        "Set to 0 to disable limit."})
     @net.minecraftforge.common.config.Config.Name("Max broken blocks at once")
     public static int maxBlocksBroken = 200;
 
+    @net.minecraftforge.common.config.Config.Comment("Set to false to disable the Placer wand's alternative breaking mode.")
+    @net.minecraftforge.common.config.Config.Name("Enable 'Break connected'")
+    public static boolean enableAltBreakMode = true;
+
     @net.minecraftforge.common.config.Config.Comment({"The alternative breaking mode pauses for that many ms between breaking blocks.",
-    "Only for debugging or if you want to play domino."})
+    "Only for debugging or playing around."})
     @net.minecraftforge.common.config.Config.Name("[Debug] ms between block breaks")
     public static int millisBetweenBlockBreaks = 0;
 
@@ -41,9 +45,10 @@ public class Config {
         @SubscribeEvent
         public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event){
             if(event.getModID().equals(LayoutBlocks.MOD_ID)){
-                System.out.println("changing com.schoggomilch.testmod.config");
                 ConfigManager.sync(LayoutBlocks.MOD_ID, net.minecraftforge.common.config.Config.Type.INSTANCE);
             }
         }
+
     }
+
 }

@@ -42,32 +42,6 @@ public class BlockSolidLayoutBlock extends Block {
     }
 
 
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side,
-                                    float hitX, float hitY, float hitZ){
-        ItemStack itemstack = playerIn.getHeldItem(hand);
-        System.out.println("clicked");
-        System.out.println("color: " + this.getBlockState().getProperty("color"));
-
-        if(!itemstack.isEmpty()){
-            if(DyeUtils.isDye(itemstack)){
-                if(DyeUtils.colorFromStack(itemstack) != null){
-                    worldIn.setBlockState(pos, state.withProperty(COLOR, DyeUtils.colorFromStack(itemstack).get()));
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-
-
-
-
-
-
-
-
 
     @Override
     @SideOnly(Side.CLIENT)
@@ -94,7 +68,28 @@ public class BlockSolidLayoutBlock extends Block {
     public void registerItemModel(){
         LayoutBlocks.proxy.registerItemRenderer(Item.getItemFromBlock(this), 0, "solid_layout_block");
     }
-    //-------------copy pasted stuff-----------------------
+
+
+
+
+    //<editor-fold desc="Coloring stuff">
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side,
+                                    float hitX, float hitY, float hitZ){
+        ItemStack itemstack = playerIn.getHeldItem(hand);
+
+        if(!itemstack.isEmpty()){
+            if(DyeUtils.isDye(itemstack)){
+                if(DyeUtils.colorFromStack(itemstack) != null){
+                    worldIn.setBlockState(pos, state.withProperty(COLOR, DyeUtils.colorFromStack(itemstack).get()));
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 
     /**
      * Get the MapColor for this Block and the given BlockState
@@ -126,5 +121,5 @@ public class BlockSolidLayoutBlock extends Block {
     {
         return new BlockStateContainer(this, new IProperty[] {COLOR});
     }
-
+    //</editor-fold>
 }

@@ -1,0 +1,18 @@
+#exclude everything except gradle, git and licensing stuff and the src foulder.
+#idea imprudently stolen from Draconic-Evolution
+
+/*
+
+#gradle
+!gradle/
+!build.gradle
+!gradlew
+!gradlew.bat
+
+#git/licensing
+!.gitignore
+!LICENSE
+README.md
+
+#src foulder
+!src/

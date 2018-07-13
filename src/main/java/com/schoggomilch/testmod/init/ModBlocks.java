@@ -9,9 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ModBlocks {
-
- //   public static final Material MATERIAL_SOLID_LAYOUT = new EnumHelper().add
-
     public static BlockSolidLayoutBlock blockSolidLayoutBlock = new BlockSolidLayoutBlock();
     public static BlockNonsolidLayoutBlock blockNonsolidLayoutBlock = new BlockNonsolidLayoutBlock();
 }

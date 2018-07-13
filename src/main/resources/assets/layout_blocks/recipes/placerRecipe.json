@@ -6,18 +6,19 @@
         "config_setting": "placerRecipeEnabled"
       }
     ],
-      "type": "minecraft:crafting_shaped",
+      "type": "forge:ore_shaped",
       "pattern": [
       " d",
       "s "
     ],
       "key": {
         "d": {
-          "item": "minecraft:dirt",
-          "data": 0
+          "type": "forge:ore_dict",
+          "ore": "dirt"
         },
         "s": {
-          "item": "minecraft:iron_ingot"
+          "type": "forge:ore_dict",
+          "ore": "ingotIron"
         }
       },
       "result": {

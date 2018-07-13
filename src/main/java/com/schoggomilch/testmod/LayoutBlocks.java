@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.server.FMLServerHandler;
+import org.apache.logging.log4j.Logger;
 
 @Mod(modid = LayoutBlocks.MOD_ID, name = LayoutBlocks.MOD_NAME, useMetadata = true)
 public class LayoutBlocks {
@@ -25,10 +26,11 @@ public class LayoutBlocks {
     @SidedProxy(clientSide = "com.schoggomilch.testmod.proxy.ClientProxy", serverSide = "com.schoggomilch.testmod.proxy.CommonProxy")
     public static CommonProxy proxy;
 
-//    public static Logger logger;
+    public static Logger logger;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        logger = event.getModLog();
         proxy.preInit(event);
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new RenderGuiHandler());
     }

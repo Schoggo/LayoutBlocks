@@ -4,7 +4,7 @@
     "textures": {
       "all": "layout_blocks:blocks/nonsolid_layout_block"
     },
-    "model": "layout_blocks:nonsolid_layout_block"
+    "model": "cube_all"
   },
   "variants": {
     "normal": [{}],
