@@ -12,7 +12,7 @@ The mod is licensed under [MIT License](https://opensource.org/licenses/MIT).
 
 ## Download 
 
-Please only download from [CurseForge](https://minecraft.curseforge.com/projects/layoutblocks) or the FTB launcher. Other sites often don't give the mod autors credit and modify the mod files (and possibly include malicious software). For more information on this topic visit http://stopmodreposts.org/ .
+Please only download from [CurseForge](https://minecraft.curseforge.com/projects/layoutblocks) or other trusted sites. Other sites often don't give the mod autors credit and modify the mod files (and possibly include malicious software). For more information on this topic visit http://stopmodreposts.org/ .
 
 
 ## Modpacks
