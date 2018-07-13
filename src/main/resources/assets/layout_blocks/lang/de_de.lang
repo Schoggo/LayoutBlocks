@@ -6,4 +6,4 @@ item.layout_blocks.item_placer.name=LayoutBlock Platzierer
 gui.solid=Solide
 gui.nonsolid=Nicht Solide
 gui.break_one=Einen Block zerstören
-gui.break_all=Zusammenhängende Blöcke
+gui.break_all=Verbund zerstören
