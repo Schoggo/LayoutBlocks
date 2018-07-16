@@ -52,9 +52,11 @@ public class ItemPlacer extends Item {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        if(Config.rClickOpensGui) {
-            if (worldIn.isRemote) {
-                playerIn.openGui(LayoutBlocks.instance, RenderGuiHandler.PLACER, worldIn, (int) playerIn.posX, (int) playerIn.posY, (int) playerIn.posZ);
+        if(playerIn.isSneaking()) {
+            if (Config.rClickOpensGui) {
+                if (worldIn.isRemote) {
+                    playerIn.openGui(LayoutBlocks.instance, RenderGuiHandler.PLACER, worldIn, (int) playerIn.posX, (int) playerIn.posY, (int) playerIn.posZ);
+                }
             }
         }
 
@@ -74,7 +76,7 @@ public class ItemPlacer extends Item {
         LayoutBlocks.proxy.registerItemRenderer(ModItems.itemPlacer, 0, "item_placer");
     }
 
-
+/*
     //<editor-fold desc="Alternative breaking mode">
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
@@ -112,7 +114,7 @@ public class ItemPlacer extends Item {
         return false;
     }
     //</editor-fold>
-
+*/
 
     //<editor-fold desc="Placing blocks">
     @Override
