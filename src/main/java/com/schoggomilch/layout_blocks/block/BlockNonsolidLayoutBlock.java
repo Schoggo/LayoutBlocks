@@ -1,15 +1,22 @@
 package com.schoggomilch.layout_blocks.block;
 
 import com.schoggomilch.layout_blocks.LayoutBlocks;
+import com.schoggomilch.layout_blocks.config.Config;
+import com.schoggomilch.layout_blocks.init.ModItems;
+import com.schoggomilch.layout_blocks.item.BlockBreakerThread;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -32,6 +39,43 @@ public class BlockNonsolidLayoutBlock extends Block {
 
         setUnlocalizedName(LayoutBlocks.MOD_ID + ".nonsolid_layout_block");
         setRegistryName("nonsolid_layout_block");
+    }
+
+
+    @Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player){
+        System.out.println("harvested");
+        if(player.getHeldItemMainhand().getItem() == ModItems.itemPlacer){
+            ItemStack stack = player.getHeldItemMainhand();
+            NBTTagCompound nbt;
+
+            if (stack.hasTagCompound()){
+                nbt = stack.getTagCompound();
+                if (nbt.hasKey("breaks")){
+                    byte breaks = nbt.getByte("breaks");
+
+                    switch (breaks){
+                        case 0: //normal
+                            break;
+
+                        case 1: //break all connected layoutblocks
+                            if (Config.enableAltBreakMode)
+                                new Thread(new BlockBreakerThread(worldIn, player, pos, stack)).start();
+                            break;
+                    }
+                }
+                else {
+                    nbt.setByte("breaks", (byte) 0);
+                    stack.setTagCompound(nbt);
+                }
+            }
+            else {
+                nbt = new NBTTagCompound();
+                nbt.setByte("places", (byte) 1);
+                nbt.setByte("breaks", (byte) 0);
+                stack.setTagCompound(nbt);
+            }
+        }
     }
 
 

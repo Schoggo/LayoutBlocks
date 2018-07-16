@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = LayoutBlocks.MOD_ID, name = LayoutBlocks.MOD_NAME, useMetadata = true)
+@Mod(modid = LayoutBlocks.MOD_ID, name = LayoutBlocks.MOD_NAME, useMetadata = true, acceptedMinecraftVersions = "[1.12,1.13)")
 public class LayoutBlocks {
 
     public static final String MOD_ID = "layout_blocks";

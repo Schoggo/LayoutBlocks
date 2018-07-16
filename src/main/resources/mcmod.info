@@ -3,9 +3,10 @@
   "name": "LayoutBlocks",
   "description": "Lets you place LayoutBlocks, blocks that don't cost anything and can quickly be removed again so that you can plan structures more easily.",
   "version": "1.0.0.0",
-  "mcversion": "1.12.2",
-  "url": "minecraftforge.net/",
-  "updateJSON": "minecraftforge.net/versions.json",
+  "logoFile": "assets/examplemod/textures/logo.png",
+  "mcversion": "(1.12),(1.12.1),(1.12.2)",
+  "url": "https://minecraft.curseforge.com/projects/layoutblocks",
+  "updateJSON": "https://minecraft.curseforge.com/projects/layoutblocks",
   "authorList": ["Schoggomilch"],
-  "credits": "best credits farm is index"
+  "credits": "Warrangota (logo)"
 }]
