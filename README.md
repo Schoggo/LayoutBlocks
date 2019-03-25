@@ -2,7 +2,7 @@
 
 ## Description
 
-LayoutBlocks is a [Minecraft](https://minecraft.net/) mod that lets you place LayoutBlocks, blocks that don't cost anything and can quickly be removed using a placer wand. It's purpose is to make prebuilding structures (like complex houses or multiblock machines from other mods) easier.
+LayoutBlocks is a [Minecraft](https://minecraft.net/) mod that lets you place LayoutBlocks, blocks that don't cost anything and can quickly be removed using a placer wand. Its purpose is to make prebuilding structures (like complex houses or multiblock machines from other mods) easier.
 
 
 ## License
